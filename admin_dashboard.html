@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ProPay Enterprise - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-pill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#00714d",
+                      "surface-bright": "#f8f9ff",
+                      "error-container": "#ffdad6",
+                      "secondary": "#006c49",
+                      "on-tertiary-container": "#ffa929",
+                      "outline-variant": "#c4c5d5",
+                      "on-secondary-fixed": "#002113",
+                      "on-surface-variant": "#444653",
+                      "tertiary-container": "#6b4200",
+                      "primary-container": "#1e40af",
+                      "on-error-container": "#93000a",
+                      "outline": "#757684",
+                      "surface-container": "#e5eeff",
+                      "on-secondary-fixed-variant": "#005236",
+                      "background": "#f8f9ff",
+                      "inverse-surface": "#213145",
+                      "on-primary-fixed": "#001453",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#d3e4fe",
+                      "on-tertiary-fixed": "#2a1700",
+                      "tertiary": "#4c2e00",
+                      "on-secondary": "#ffffff",
+                      "surface-container-low": "#eff4ff",
+                      "secondary-fixed-dim": "#4edea3",
+                      "on-primary-fixed-variant": "#173bab",
+                      "on-primary-container": "#a8b8ff",
+                      "primary-fixed": "#dde1ff",
+                      "surface-dim": "#cbdbf5",
+                      "surface-container-high": "#dce9ff",
+                      "primary-fixed-dim": "#b8c4ff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "tertiary-fixed": "#ffddb8",
+                      "inverse-primary": "#b8c4ff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "surface": "#f8f9ff",
+                      "on-background": "#0b1c30",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-surface": "#0b1c30",
+                      "secondary-container": "#6cf8bb",
+                      "primary": "#00288e",
+                      "surface-tint": "#3755c3",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#6ffbbe",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "sidebar-width": "260px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "lg": "24px",
+                      "container-margin": "24px",
+                      "sm": "8px",
+                      "xs": "4px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "h2": ["Inter"],
+                      "h1": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "body-md": ["Inter"],
+                      "h3": ["Inter"],
+                      "data-table": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-caps": ["11px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "body-md": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "h3": ["18px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "600"}],
+                      "data-table": ["13px", {"lineHeight": "1.4", "letterSpacing": "0.01em", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background font-body-md text-on-background antialiased">
+<!-- Shared SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface-container-lowest border-r border-outline-variant flex flex-col h-full py-lg z-50">
+<div class="px-lg mb-xl">
+<h1 class="font-h2 text-h2 font-bold text-primary">ProPay Enterprise</h1>
+<p class="text-on-surface-variant text-body-md">Admin Console</p>
+</div>
+<nav class="flex-grow space-y-base">
+<a class="flex items-center gap-md bg-primary text-on-primary rounded-full px-md py-sm mx-sm scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined active-nav-pill" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200 px-md py-sm mx-sm rounded-full" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Employee Management</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200 px-md py-sm mx-sm rounded-full" href="#">
+<span class="material-symbols-outlined">fingerprint</span>
+<span class="font-body-md">Attendance</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200 px-md py-sm mx-sm rounded-full" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md">Payroll Processing</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200 px-md py-sm mx-sm rounded-full" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors duration-200 px-md py-sm mx-sm rounded-full" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-md mt-auto pt-lg space-y-sm">
+<button class="w-full bg-on-secondary-container text-white py-md rounded-xl font-semibold flex items-center justify-center gap-sm shadow-sm hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">bolt</span>
+                Run Payroll Now
+            </button>
+<div class="border-t border-outline-variant pt-md">
+<a class="flex items-center gap-md text-on-surface-variant hover:text-primary px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md">Help Center</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant hover:text-error px-md py-sm transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 flex justify-between items-center h-16 px-lg bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-lg">
+<h2 class="font-h3 text-h3 font-semibold text-on-surface">Payroll Management</h2>
+<div class="relative w-80">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-low border-none focus:ring-2 focus:ring-primary rounded-full text-body-md" placeholder="Search employees or reports..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="ml-md flex items-center gap-sm">
+<div class="text-right">
+<p class="font-semibold text-body-md leading-none">Alex Rivera</p>
+<p class="text-xs text-on-surface-variant">HR Administrator</p>
+</div>
+<img alt="Administrator Portrait" class="w-10 h-10 rounded-full border border-outline-variant" data-alt="A professional portrait of a modern office administrator with a confident smile, wearing a dark navy blazer and white shirt. The background is a blurred, high-end corporate office with soft natural lighting and minimalist decor. The image has a clean, high-key aesthetic that aligns with a professional payroll and management dashboard UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJUDUB6272oEOiR61DJXhzJoXQPxJqz3TnnXWgglJHN6wJn8KiOx5wB1-pBG7tfpUwsO8_Ge5e6NGSVYVSS4TN3N0oklVdbKrUP4ur-iXzQNgSxewt_cTTGVMHpveNgUm7dgkZ1GpF8qm4nNA-ng-KR_UwT5fDl9DUqWPM721jKfpGA73IKDULCn9Vy-gyVmPDs3QVBIY2k7VXEJc6vXveNRJOEvrtOnVxPhJf8JU1xsVGGOh9dlk_al3In8Ims0_LHklVxrd33fw"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-lg space-y-lg">
+<!-- Statistics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Total Employees -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary-fixed rounded-lg text-primary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-on-secondary-container bg-secondary-container px-sm py-base rounded text-xs font-bold">+12%</span>
+</div>
+<p class="text-on-surface-variant text-body-md mb-base">Total Employees</p>
+<h3 class="font-h1 text-h1 text-on-surface">1,248</h3>
+</div>
+<!-- Present Today -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-secondary-container text-on-secondary-fixed-variant rounded-lg">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<span class="text-on-surface-variant text-xs">Today</span>
+</div>
+<p class="text-on-surface-variant text-body-md mb-base">Present Today</p>
+<h3 class="font-h1 text-h1 text-on-surface">1,102</h3>
+</div>
+<!-- Late Today -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-lg">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<span class="text-error bg-error-container px-sm py-base rounded text-xs font-bold">+3%</span>
+</div>
+<p class="text-on-surface-variant text-body-md mb-base">Late Today</p>
+<h3 class="font-h1 text-h1 text-on-surface">45</h3>
+</div>
+<!-- Total Payroll -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-md">
+<div class="p-sm bg-primary-container text-on-primary-container rounded-lg">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-on-surface-variant text-xs">Monthly</span>
+</div>
+<p class="text-on-surface-variant text-body-md mb-base">Total Payroll</p>
+<h3 class="font-h1 text-h1 text-on-surface">$428.5k</h3>
+</div>
+</section>
+<!-- Main Insights Layout -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Recent Attendance Table -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-h3 text-h3 text-on-surface">Recent Attendance</h3>
+<button class="text-primary font-semibold text-body-md hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-data-table border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant border-b border-outline-variant">
+<th class="px-lg py-md font-bold text-label-caps">EMPLOYEE NAME</th>
+<th class="px-lg py-md font-bold text-label-caps">DEPARTMENT</th>
+<th class="px-lg py-md font-bold text-label-caps">CHECK IN</th>
+<th class="px-lg py-md font-bold text-label-caps">STATUS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold text-xs">JS</div>
+<span class="font-medium text-on-surface">Jordan Smith</span>
+</td>
+<td class="px-lg py-md text-on-surface-variant">Engineering</td>
+<td class="px-lg py-md text-on-surface-variant">08:52 AM</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-base rounded-full bg-secondary-container text-on-secondary-fixed-variant text-xs font-bold">
+                                            Present
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary font-bold text-xs">MA</div>
+<span class="font-medium text-on-surface">Maria Alvez</span>
+</td>
+<td class="px-lg py-md text-on-surface-variant">Marketing</td>
+<td class="px-lg py-md text-on-surface-variant">09:15 AM</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-base rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-xs font-bold">
+                                            Late
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold text-xs">RK</div>
+<span class="font-medium text-on-surface">Robert Kim</span>
+</td>
+<td class="px-lg py-md text-on-surface-variant">HR &amp; Admin</td>
+<td class="px-lg py-md text-on-surface-variant">08:45 AM</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-base rounded-full bg-secondary-container text-on-secondary-fixed-variant text-xs font-bold">
+                                            Present
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-error font-bold text-xs">LW</div>
+<span class="font-medium text-on-surface">Linda Wu</span>
+</td>
+<td class="px-lg py-md text-on-surface-variant">Sales</td>
+<td class="px-lg py-md text-on-surface-variant">--:--</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-base rounded-full bg-error-container text-error text-xs font-bold">
+                                            Absent
+                                        </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant font-bold text-xs">DT</div>
+<span class="font-medium text-on-surface">David Thorne</span>
+</td>
+<td class="px-lg py-md text-on-surface-variant">Legal</td>
+<td class="px-lg py-md text-on-surface-variant">09:02 AM</td>
+<td class="px-lg py-md">
+<span class="inline-flex items-center px-sm py-base rounded-full bg-surface-variant text-primary text-xs font-bold">
+                                            Remote
+                                        </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Monthly Attendance Trends (Bar Chart Placeholder) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg flex flex-col">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="font-h3 text-h3 text-on-surface">Attendance Trends</h3>
+<span class="material-symbols-outlined text-outline">more_horiz</span>
+</div>
+<!-- Visual Chart Component -->
+<div class="flex-grow flex items-end justify-between gap-base h-48 mb-lg px-md">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[45%] transition-all group-hover:h-[50%]"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant">JAN</span>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[65%] transition-all group-hover:h-[70%]"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant">FEB</span>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[55%] transition-all group-hover:h-[60%]"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant">MAR</span>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[85%] transition-all group-hover:h-[90%]"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant">APR</span>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[75%] transition-all group-hover:h-[80%]"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant">MAY</span>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t-lg relative group">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[92%] transition-all group-hover:h-[95%]"></div>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-on-surface-variant">JUN</span>
+</div>
+</div>
+<div class="mt-xl space-y-md">
+<div class="flex justify-between items-center text-body-md">
+<span class="text-on-surface-variant">Avg. Daily Attendance</span>
+<span class="font-bold">94.2%</span>
+</div>
+<div class="w-full bg-surface-container-low h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[94.2%]"></div>
+</div>
+<p class="text-xs text-on-surface-variant italic">System processed 24,582 logs this month.</p>
+</div>
+</div>
+</section>
+<!-- Bottom Quick Actions / High Density Area -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- System Notifications Card -->
+<div class="p-lg bg-surface-container-low rounded-xl flex items-center gap-lg border border-outline-variant">
+<div class="w-16 h-16 rounded-full bg-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary-fixed text-3xl">verified_user</span>
+</div>
+<div>
+<h4 class="font-h3 text-h3 text-on-surface">Security Audit Passed</h4>
+<p class="text-on-surface-variant text-body-md">The last quarterly payroll compliance audit was completed successfully with zero discrepancies found.</p>
+</div>
+</div>
+<!-- Export / Reporting Card -->
+<div class="p-lg bg-primary-container rounded-xl flex items-center justify-between gap-lg text-on-primary-container">
+<div>
+<h4 class="font-h3 text-h3 font-bold">Month-End Summary</h4>
+<p class="opacity-80 text-body-md">Generate the consolidated tax and payroll report for the current fiscal month.</p>
+</div>
+<button class="shrink-0 bg-white text-primary font-bold px-lg py-md rounded-full hover:bg-opacity-90 transition-all flex items-center gap-sm">
+<span class="material-symbols-outlined">download</span>
+                        Export PDF
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Action Button for Dashboard -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform z-50">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+</body></html>
