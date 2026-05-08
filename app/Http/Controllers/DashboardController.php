@@ -14,10 +14,54 @@ class DashboardController extends Controller
             $today = \Carbon\Carbon::today();
             $currentMonth = \Carbon\Carbon::now()->month;
             
+            // Calculate monthly summary for Izin and Sakit
+            $monthSakit = \App\Models\LeaveRequest::where('status', 'approved')
+                ->where('leave_type', 'sick')
+                ->where(function($q) use ($currentMonth) {
+                    $q->whereMonth('start_date', $currentMonth)->orWhereMonth('end_date', $currentMonth);
+                })->get();
+            
+            $monthIzin = \App\Models\LeaveRequest::where('status', 'approved')
+                ->where('leave_type', '!=', 'sick')
+                ->where(function($q) use ($currentMonth) {
+                    $q->whereMonth('start_date', $currentMonth)->orWhereMonth('end_date', $currentMonth);
+                })->get();
+
+            $totalMonthSakit = 0;
+            foreach ($monthSakit as $leave) {
+                $cur = $leave->start_date->copy();
+                while ($cur->lte($leave->end_date)) {
+                    if ($cur->month == $currentMonth && $cur->isWeekday()) $totalMonthSakit++;
+                    $cur->addDay();
+                }
+            }
+
+            $totalMonthIzin = 0;
+            foreach ($monthIzin as $leave) {
+                $cur = $leave->start_date->copy();
+                while ($cur->lte($leave->end_date)) {
+                    if ($cur->month == $currentMonth && $cur->isWeekday()) $totalMonthIzin++;
+                    $cur->addDay();
+                }
+            }
+
             $stats = [
                 'employee_count' => \App\Models\Employee::where('status', 'active')->count(),
                 'today_present' => \App\Models\Attendance::where('work_date', $today)->where('status', 'present')->count(),
-                'today_permit_sick' => \App\Models\Attendance::where('work_date', $today)->whereIn('status', ['izin', 'sakit'])->count(),
+                'today_sakit' => \App\Models\Attendance::where('work_date', $today)->where('status', 'sakit')->count() + 
+                                \App\Models\LeaveRequest::where('status', 'approved')
+                                    ->where('leave_type', 'sick')
+                                    ->where('start_date', '<=', $today->toDateString())
+                                    ->where('end_date', '>=', $today->toDateString())
+                                    ->count(),
+                'today_izin' => \App\Models\Attendance::where('work_date', $today)->where('status', 'izin')->count() + 
+                               \App\Models\LeaveRequest::where('status', 'approved')
+                                   ->where('leave_type', '!=', 'sick')
+                                   ->where('start_date', '<=', $today->toDateString())
+                                   ->where('end_date', '>=', $today->toDateString())
+                                   ->count(),
+                'month_sakit' => $totalMonthSakit,
+                'month_izin'  => $totalMonthIzin,
                 'draft_payrolls' => \App\Models\PayrollRun::where('status', 'draft')->count(),
                 'total_payroll_month' => \App\Models\Payroll::whereHas('run', function($q) use ($currentMonth) {
                     $q->whereMonth('period_start', $currentMonth);
@@ -25,8 +69,9 @@ class DashboardController extends Controller
             ];
 
             // Calculation for Absensi Hari Ini %
+            $todayNotAbsent = $stats['today_present'] + $stats['today_sakit'] + $stats['today_izin'];
             $attendancePercentage = $stats['employee_count'] > 0 
-                ? round((($stats['today_present'] + $stats['today_permit_sick']) / $stats['employee_count']) * 100) 
+                ? round(($todayNotAbsent / $stats['employee_count']) * 100) 
                 : 0;
             $stats['attendance_percentage'] = min(100, $attendancePercentage);
 

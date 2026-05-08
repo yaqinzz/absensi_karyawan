@@ -8,22 +8,26 @@
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid gap-6 lg:grid-cols-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                    <p class="text-xs text-gray-500">Karyawan Aktif</p>
-                    <p class="text-2xl font-semibold text-gray-800 mt-2">{{ $stats['employee_count'] }}</p>
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Karyawan Aktif</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">{{ $stats['employee_count'] }}</p>
                 </div>
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                    <p class="text-xs text-gray-500">Hadir Hari Ini</p>
-                    <p class="text-2xl font-semibold text-gray-800 mt-2">{{ $stats['today_present'] }}</p>
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Hadir Hari Ini</p>
+                    <p class="text-3xl font-bold text-emerald-600 mt-2">{{ $stats['today_present'] }}</p>
+                </div>
+                <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm border-l-4 border-l-blue-500">
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Izin (Bulan Ini)</p>
+                    <p class="text-3xl font-bold text-blue-600 mt-2">{{ $stats['month_izin'] }}</p>
+                </div>
+                <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm border-l-4 border-l-amber-500">
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Sakit (Bulan Ini)</p>
+                    <p class="text-3xl font-bold text-amber-600 mt-2">{{ $stats['month_sakit'] }}</p>
                 </div>
                 <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                    <p class="text-xs text-gray-500">Izin / Sakit</p>
-                    <p class="text-2xl font-semibold text-gray-800 mt-2">{{ $stats['today_permit_sick'] }}</p>
-                </div>
-                <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                    <p class="text-xs text-gray-500">Payroll Draft</p>
-                    <p class="text-2xl font-semibold text-gray-800 mt-2">{{ $stats['draft_payrolls'] }}</p>
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Payroll Draft</p>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">{{ $stats['draft_payrolls'] }}</p>
                 </div>
             </div>
 

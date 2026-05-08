@@ -19,16 +19,20 @@
                     </div>
                     <div class="grid grid-cols-2 gap-4 mt-6">
                         <div class="rounded-xl bg-white/10 p-4">
-                            <p class="text-xs text-emerald-100">Karyawan Aktif</p>
-                            <p class="text-2xl font-semibold">{{ $stats['employee_count'] }}</p>
+                            <p class="text-xs text-emerald-100 uppercase tracking-wider">Hadir Hari Ini</p>
+                            <p class="text-2xl font-bold">{{ $stats['today_present'] }}</p>
                         </div>
                         <div class="rounded-xl bg-white/10 p-4">
-                            <p class="text-xs text-emerald-100">Absensi Hari Ini</p>
-                            <p class="text-2xl font-semibold">{{ $stats['attendance_percentage'] }}%</p>
+                            <p class="text-xs text-emerald-100 uppercase tracking-wider">Izin (Bulan Ini)</p>
+                            <p class="text-2xl font-bold">{{ $stats['month_izin'] }}</p>
                         </div>
                         <div class="rounded-xl bg-white/10 p-4">
-                            <p class="text-xs text-emerald-100">Payroll Bulan Ini</p>
-                            <p class="text-2xl font-semibold">Rp {{ number_format($stats['total_payroll_month'] / 1000000, 1) }}M</p>
+                            <p class="text-xs text-emerald-100 uppercase tracking-wider">Sakit (Bulan Ini)</p>
+                            <p class="text-2xl font-bold">{{ $stats['month_sakit'] }}</p>
+                        </div>
+                        <div class="rounded-xl bg-white/10 p-4">
+                            <p class="text-xs text-emerald-100 uppercase tracking-wider">Absensi (%)</p>
+                            <p class="text-2xl font-bold">{{ $stats['attendance_percentage'] }}%</p>
                         </div>
                         <div class="rounded-xl bg-white/10 p-4">
                             <p class="text-xs text-emerald-100">Payroll Draft</p>
